@@ -2,13 +2,14 @@ require 'sinatra/base'
 
 class RPSChallenge < Sinatra::Base
 
+  enable :sessions
+
   set :views, File.expand_path('../../views', __FILE__)
 
   helpers do 
 
-
-    def name_exists?
-      !session[:name].nil?
+    def name 
+      name = session[:name]
     end
 
   end
@@ -22,8 +23,7 @@ class RPSChallenge < Sinatra::Base
   end
 
   post '/name' do 
-    name = params[:name]
-    session[:name] = name
+    session[:name] = params[:name]
     redirect '/play'
   end
 
