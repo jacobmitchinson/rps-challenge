@@ -1,9 +1,10 @@
-Title
+Rock, Paper, Scissors
 =======================
 
 ## Synopsis
 
-TODO: Enter a description of your project here.
+This a rock, paper, scissors game using Sinatra and tested in Cucumber and Rspec.
+
 
 ![NAME_OF_IMAGE](http://ENTER_URL)
 
