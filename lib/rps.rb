@@ -11,6 +11,7 @@ class RPSChallenge < Sinatra::Base
   post '/name' do 
     name = params[:name]
     session[:name] = name
+    redirect '/'
   end
 
 
