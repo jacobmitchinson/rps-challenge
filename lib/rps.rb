@@ -16,6 +16,10 @@ class RPSChallenge < Sinatra::Base
     erb :index
   end
 
+  get '/play' do
+    erb :index
+  end
+
   post '/name' do 
     name = params[:name]
     session[:name] = name
