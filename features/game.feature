@@ -13,3 +13,12 @@ Scenario: Set my name
 	And I press "submit"
 	Then I should see "Hi, Jake, let's play."
 
+Scenario: Player wins
+	Given I am on /play
+	And I click "rock"
+	Then I should see "You win."
+
+Scenario: Player draws
+
+Scenario: Player loses 
+
