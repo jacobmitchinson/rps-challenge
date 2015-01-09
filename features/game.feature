@@ -19,6 +19,11 @@ Scenario: Player wins
 	Then I should see "You win."
 
 Scenario: Player draws
+	Given I am on /play
+	And I press "rock"
+	Then I should see "Draw."
+	And I should not see "You win."
+	And I should not see "You lose."
 
 Scenario: Player loses 
 
