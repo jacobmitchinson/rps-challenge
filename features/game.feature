@@ -15,7 +15,7 @@ Scenario: Set my name
 
 Scenario: Player wins
 	Given I am on /play
-	And I follow "rock"
+	And I press "rock"
 	Then I should see "You win."
 
 Scenario: Player draws
