@@ -6,3 +6,4 @@ Feature: Play a game
 Scenario: Greet
 	Given I am on the homepage
 	Then I should see "Welcome, to the game!"
+
