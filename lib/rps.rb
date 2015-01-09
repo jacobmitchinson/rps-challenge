@@ -6,6 +6,7 @@ class RPSChallenge < Sinatra::Base
 
   helpers do 
 
+
     def name_exists?
       !session[:name].nil?
     end
@@ -17,7 +18,7 @@ class RPSChallenge < Sinatra::Base
   end
 
   get '/play' do
-    erb :index
+    erb :play
   end
 
   post '/name' do 
