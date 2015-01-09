@@ -8,6 +8,12 @@ class RPSChallenge < Sinatra::Base
     erb :index
   end
 
+  post '/name' do 
+    name = params[:name]
+    session[:name] = name
+  end
+
+
   # start the server if ruby file executed directly
   run! if app_file == $0
 end
