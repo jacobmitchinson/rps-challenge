@@ -1,4 +1,5 @@
-  require 'sinatra/base'
+require 'sinatra/base'
+require 'player'
 
 class RPSChallenge < Sinatra::Base
 
@@ -8,8 +9,13 @@ class RPSChallenge < Sinatra::Base
 
   helpers do 
 
-    def player_name
-      player_name = session[:name]
+    def player_create
+      @player = Player.new
+      player_name(@player)
+    end
+
+    def player_name(player)
+      player.name = session[:name].to_s   
     end
 
     def computer
@@ -18,10 +24,12 @@ class RPSChallenge < Sinatra::Base
 
     def check
       p session[:move]
-      if computer == session[:move].to_s
+      if computer == session[:move]
         "Draw."
-      else 
+      elsif session[:move] == "rock" 
         "You win."
+      else 
+        "You lose."
       end
     end
   end
@@ -31,6 +39,7 @@ class RPSChallenge < Sinatra::Base
   end
 
   get '/play' do
+    player_create
     erb :play
   end
 
