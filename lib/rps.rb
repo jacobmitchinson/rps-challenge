@@ -1,5 +1,5 @@
 require 'sinatra/base'
-require 'player'
+require_relative 'player.rb'
 
 class RPSChallenge < Sinatra::Base
 
@@ -13,10 +13,19 @@ class RPSChallenge < Sinatra::Base
     def player_create
       @player = Player.new
       player_name(@player)
+      player_store(@player)
     end
 
     def player_name(player)
       player.name = session[:name].to_s   
+    end
+
+    def player_store(player)
+      session[:player_id] = player.object_id 
+    end
+
+    def player
+      ObjectSpace._id2ref(session[:player_id])
     end
 
     def computer
@@ -24,7 +33,8 @@ class RPSChallenge < Sinatra::Base
     end
 
     def check
-      p session[:move]
+      p player
+      p player.move
       if computer == session[:move]
         "Draw."
       elsif session[:move] == "rock" 
@@ -49,10 +59,12 @@ class RPSChallenge < Sinatra::Base
     redirect '/play'
   end
 
+# I am trying to implement the move to interact with the player object
+
   post '/move' do
-    p params[:move] 
+    player.move = params[:move].to_s
+    p player.move
     session[:move] = params[:move]
-    p session[:move]
     redirect '/play'
   end
 

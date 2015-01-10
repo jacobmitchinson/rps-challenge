@@ -28,7 +28,7 @@ Scenario: Player draws
 Scenario: Player loses 
 	Given I am on /play
 	And I press "paper"
-	Then I should see "Lose."
+	Then I should see "You lose."
 	And I should not see "You win."
 	And I should not see "Draw."
 
