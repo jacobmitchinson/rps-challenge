@@ -7,6 +7,7 @@ class RPSChallenge < Sinatra::Base
 
   set :views, File.expand_path('../../views', __FILE__)
 
+
   helpers do 
 
     def player_create

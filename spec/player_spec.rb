@@ -9,4 +9,9 @@ describe Player do
     expect(player.name).to eq 'Jake'
   end 
 
+  it 'should make a move' do
+    player.move = "rock"
+    expect(player.move).to eq 'rock' 
+  end
+
 end
