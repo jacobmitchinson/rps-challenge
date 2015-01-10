@@ -20,10 +20,15 @@ Scenario: Player wins
 
 Scenario: Player draws
 	Given I am on /play
-	And I press "rock"
+	And I press "scissors"
 	Then I should see "Draw."
 	And I should not see "You win."
 	And I should not see "You lose."
 
 Scenario: Player loses 
+	Given I am on /play
+	And I press "paper"
+	Then I should see "Lose."
+	And I should not see "You win."
+	And I should not see "Draw."
 

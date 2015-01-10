@@ -1,4 +1,4 @@
-require 'sinatra/base'
+  require 'sinatra/base'
 
 class RPSChallenge < Sinatra::Base
 
@@ -8,10 +8,22 @@ class RPSChallenge < Sinatra::Base
 
   helpers do 
 
-    def name 
-      name = session[:name]
+    def player_name
+      player_name = session[:name]
     end
 
+    def computer
+      "scissors"
+    end
+
+    def check
+      p session[:move]
+      if computer == session[:move].to_s
+        "Draw."
+      else 
+        "You win."
+      end
+    end
   end
 
   get '/' do
@@ -24,6 +36,13 @@ class RPSChallenge < Sinatra::Base
 
   post '/name' do 
     session[:name] = params[:name]
+    redirect '/play'
+  end
+
+  post '/move' do
+    p params[:move] 
+    session[:move] = params[:move]
+    p session[:move]
     redirect '/play'
   end
 
