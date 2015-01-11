@@ -9,7 +9,9 @@ describe Game do
   it 'should know when a game has been won' do
     player.move = "rock"
     allow(computer).to receive(:move).and_return("scissors")
-    expect(game(computer,player).win?).to be_true
+    game.add_player(player)
+    game.add_player(player)
+    expect(game.win?).to be true
   end
 
 end
