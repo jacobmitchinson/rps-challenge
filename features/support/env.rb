@@ -4,6 +4,7 @@ ENV['RACK_ENV'] = 'test'
 
 require File.join(File.dirname(__FILE__), '..', '..', 'lib/rps.rb')
 
+require 'cucumber/rspec/doubles'
 require 'capybara'
 require 'capybara/cucumber'
 require 'rspec'
