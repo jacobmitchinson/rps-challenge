@@ -10,7 +10,7 @@ class RPSChallenge < Sinatra::Base
 
   helpers do 
 
-    def player_create
+    def new_player
       @player = Player.new
       player_name(@player)
       player_store(@player)
@@ -35,9 +35,9 @@ class RPSChallenge < Sinatra::Base
     def check
       p player
       p player.move
-      if computer == session[:move]
+      if computer == player.move
         "Draw."
-      elsif session[:move] == "rock" 
+      elsif player.move == "rock" 
         "You win."
       else 
         "You lose."
@@ -50,7 +50,7 @@ class RPSChallenge < Sinatra::Base
   end
 
   get '/play' do
-    player_create
+    session[:player_id].nil? ? new_player : player
     erb :play
   end
 
@@ -59,12 +59,8 @@ class RPSChallenge < Sinatra::Base
     redirect '/play'
   end
 
-# I am trying to implement the move to interact with the player object
-
   post '/move' do
     player.move = params[:move].to_s
-    p player.move
-    session[:move] = params[:move]
     redirect '/play'
   end
 
