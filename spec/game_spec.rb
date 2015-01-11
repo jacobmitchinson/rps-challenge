@@ -15,6 +15,10 @@ describe Game do
     expect(game.player1).to eq player
   end
 
+  it 'can set two players' do 
+    expect(game.player2).to eq computer
+  end
+
   it 'should know when a game has been won' do
     player.move = "rock"
     allow(computer).to receive(:move).and_return("scissors")
