@@ -8,13 +8,24 @@ describe Game do
 
   before do 
     game.add_player(player)
-    game.add_player(comuter)
+    game.add_player(computer)
+  end
+
+  it 'can add a player' do
+    expect(game.player1).to eq player
   end
 
   it 'should know when a game has been won' do
     player.move = "rock"
     allow(computer).to receive(:move).and_return("scissors")
     expect(game.win?).to be true
+  end
+
+  it 'should know when a game has been lost' do 
+    player.move = "scissors"
+    allow(computer).to receive(:move).and_return("rock")
+    expect(game.lost?).to be true
+    expect(game.win?).to be false
   end
 
 end
