@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require_relative 'player.rb'
+require_relative 'computer.rb'
 
 class RPSChallenge < Sinatra::Base
 
@@ -7,13 +8,16 @@ class RPSChallenge < Sinatra::Base
 
   set :views, File.expand_path('../../views', __FILE__)
 
+  helpers do
 
-  helpers do 
+    def player
+      ObjectSpace._id2ref(session[:player_id])
+    end
 
     def new_player
-      @player = Player.new
-      player_name(@player)
-      player_store(@player)
+      player = Player.new
+      player_name(player)
+      player_store(player)
     end
 
     def player_name(player)
@@ -24,18 +28,12 @@ class RPSChallenge < Sinatra::Base
       session[:player_id] = player.object_id 
     end
 
-    def player
-      ObjectSpace._id2ref(session[:player_id])
-    end
-
     def computer
-      "scissors"
+      Computer.new
     end
 
     def check
-      p player
-      p player.move
-      if computer == player.move
+      if computer.move == player.move
         "Draw."
       elsif player.move == "rock" 
         "You win."
