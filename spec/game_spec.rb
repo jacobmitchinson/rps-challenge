@@ -34,7 +34,7 @@ describe Game do
   it 'should know when a game is a draw' do 
     player.move = "rock"
     allow(computer).to receive(:move).and_return("rock")
-    expect(game.check).to eq "Draw."
+    expect(game.check).to eq "Draw"
   end
 
 end

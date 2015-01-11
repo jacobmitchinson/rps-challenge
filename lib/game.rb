@@ -5,7 +5,7 @@ class Game
 
   def initialize 
     @winner = nil
-    @draw = "Draw."
+    @draw = "Draw"
   end
 
   def add_player(player)
@@ -18,11 +18,11 @@ class Game
 
   def check
     if winning_moves[player1.move] == player2.move
-      @winner = player1
+      @winner = player1.name
     elsif player1.move == player2.move
       @draw
     else 
-      @winner = player2
+      @winner = player2.name
     end
   end
 
