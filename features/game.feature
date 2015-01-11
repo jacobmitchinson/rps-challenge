@@ -14,19 +14,22 @@ Scenario: Set my name
 	Then I should see "Hi, Jake, let's play."
 
 Scenario: Player wins
-	Given I am on /play
+	Given I have set my name as "Jake"
+	And I am on /play
 	And I press "rock"
 	Then I should see "You win."
 
 Scenario: Player draws
-	Given I am on /play
+	Given I have set my name as "Jake"
+	And I am on /play
 	And I press "scissors"
 	Then I should see "Draw."
 	And I should not see "You win."
 	And I should not see "You lose."
 
-Scenario: Player loses 
-	Given I am on /play
+Scenario: Player loses
+	Given I have set my name as "Jake" 
+	And I am on /play
 	And I press "paper"
 	Then I should see "You lose."
 	And I should not see "You win."
