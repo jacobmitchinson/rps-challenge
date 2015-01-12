@@ -22,13 +22,13 @@ describe Game do
   it 'should know when a game has been won' do
     player.move = "rock"
     allow(computer).to receive(:move).and_return("scissors")
-    expect(game.check).to eq game.player1.name
+    expect(game.check).to eq game.player1
   end
 
   it 'should know when a game has been lost' do 
     player.move = "scissors"
     allow(computer).to receive(:move).and_return("rock")
-    expect(game.check).to eq game.player2.name
+    expect(game.check).to eq game.player2
   end
 
   it 'should know when a game is a draw' do 

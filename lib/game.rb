@@ -17,12 +17,14 @@ class Game
   end
 
   def check
-    if winning_moves[player1.move] == player2.move
-      @winner = player1.name
-    elsif player1.move == player2.move
+    player1_move = player1.move
+    player2_move = player2.move
+    if winning_moves[player1_move] == player2_move
+      player1
+    elsif player1_move == player2_move
       @draw
     else 
-      @winner = player2.name
+      player2
     end
   end
 

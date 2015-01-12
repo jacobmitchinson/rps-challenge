@@ -11,10 +11,12 @@ class RPSChallenge < Sinatra::Base
 
   before do 
     session[:game] ? @game = game_load : @game = Game.new; game_store(@game)
-    @computer = Computer.new
+    session[:computer] ? @computer = computer_load : @computer = Computer.new; computer_store(@computer)
   end
 
   helpers do
+
+    # refactor
 
     def player
       ObjectSpace._id2ref(session[:player_id])
@@ -22,6 +24,14 @@ class RPSChallenge < Sinatra::Base
 
     def game_load
       ObjectSpace._id2ref(session[:game])
+    end
+
+    def computer_load
+      ObjectSpace._id2ref(session[:computer])
+    end
+
+    def load(object)
+      ObjectSpace._id2ref(session[object.to_s])
     end
 
     def new_player
@@ -36,6 +46,12 @@ class RPSChallenge < Sinatra::Base
       player.name = session[:name].to_s   
     end
 
+    # refactor
+
+    def computer_store(computer)
+      session[:computer] = computer.object_id
+    end
+
     def game_store(game)
       session[:game] = game.object_id
     end
@@ -45,7 +61,14 @@ class RPSChallenge < Sinatra::Base
     end
 
     def check_winner
-      @game.check
+      @winner = @game.check
+      if @winner == @game.player1
+        "#{@game.player1.name} wins."
+      elsif @winner == "Draw"
+        "Draw."
+      else 
+        "#{@game.player2.name} wins."
+      end
     end
 
   end
