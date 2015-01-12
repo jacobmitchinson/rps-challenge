@@ -10,8 +10,8 @@ class RPSChallenge < Sinatra::Base
   set :views, File.expand_path('../../views', __FILE__)
 
   before do 
-    session[:game] ? @game = game_load : @game = Game.new; game_store(@game)
-    session[:computer] ? @computer = computer_load : @computer = Computer.new; computer_store(@computer)
+    session[:game] ? @game = load(:game) : @game = Game.new; store(:game, @game)
+    session[:computer] ? @computer = load(:computer) : @computer = Computer.new; store(:computer, @computer)
   end
 
   helpers do
@@ -22,22 +22,14 @@ class RPSChallenge < Sinatra::Base
       ObjectSpace._id2ref(session[:player_id])
     end
 
-    def game_load
-      ObjectSpace._id2ref(session[:game])
-    end
-
-    def computer_load
-      ObjectSpace._id2ref(session[:computer])
-    end
-
     def load(object)
-      ObjectSpace._id2ref(session[object.to_s])
+      ObjectSpace._id2ref(session[object])
     end
 
     def new_player
       player = Player.new
       player_name(player)
-      player_store(player)
+      store(:player_id, player)
       @game.add_player(player)
       @game.add_player(@computer)
     end
@@ -48,12 +40,8 @@ class RPSChallenge < Sinatra::Base
 
     # refactor
 
-    def computer_store(computer)
-      session[:computer] = computer.object_id
-    end
-
-    def game_store(game)
-      session[:game] = game.object_id
+    def store(key, game)
+      session[key] = game.object_id
     end
 
     def player_store(player)
