@@ -8,3 +8,7 @@ end
 Given(/^the computer chooses "(.*?)"$/) do |move|
   allow_any_instance_of(Computer).to receive(:move).and_return("scissors")
 end
+
+Given(/^there is a player called "(.*?)"$/) do |name|
+  @game.player2 = name
+end

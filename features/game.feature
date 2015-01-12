@@ -38,3 +38,11 @@ Scenario: Player loses
 	And I should not see "Jake wins."
 	And I should not see "Draw."
 
+Scenario: Multiplayer
+	Given I have set my name as "Jake"
+	And I am on the homepage
+	And I select "multiplayer" from "gametype"
+	And there is a player called "Clint"
+	Then I should see "Hi Jake, you're playing Clint."
+
+
