@@ -42,13 +42,6 @@ class RPSChallenge < Sinatra::Base
 
     def check_winner
       @winner = @game.check
-      if @winner == @game.player1 
-        "#{@game.player1.name} wins."
-      elsif @winner == "Draw"
-        "Draw."
-      else 
-        "#{@game.player2.name} wins."
-      end
     end
 
   end
