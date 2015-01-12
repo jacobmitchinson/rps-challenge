@@ -5,7 +5,7 @@ Feature: Play a game
 
 Scenario: Greet
 	Given I am on the homepage
-	Then I should see "Welcome, to the game!"
+	Then I should see "Rock Paper Scissors"
 
 Scenario: Set my name
 	Given I am on the homepage

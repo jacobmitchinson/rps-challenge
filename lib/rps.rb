@@ -16,8 +16,6 @@ class RPSChallenge < Sinatra::Base
 
   helpers do
 
-    # refactor
-
     def player
       ObjectSpace._id2ref(session[:player_id])
     end
@@ -38,19 +36,13 @@ class RPSChallenge < Sinatra::Base
       player.name = session[:name].to_s   
     end
 
-    # refactor
-
     def store(key, game)
       session[key] = game.object_id
     end
 
-    def player_store(player)
-      session[:player_id] = player.object_id 
-    end
-
     def check_winner
       @winner = @game.check
-      if @winner == @game.player1
+      if @winner == @game.player1 
         "#{@game.player1.name} wins."
       elsif @winner == "Draw"
         "Draw."
